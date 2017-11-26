@@ -3,7 +3,7 @@
 var sha1 = require('sha1'); //引入加密模块
 var Wechat = require('./wechat');
 var getRawBody=require('raw-body');
-var util = require('./libs/util');
+var util = require('./util');
 
 //暴露出去的函数
 module.exports = function(opts) {
@@ -38,8 +38,10 @@ module.exports = function(opts) {
 	        	encoding:this.charset
 	        })
 	        // console.log(data.toString());
-	        var content=yield util.parseXMLAsync(data);
-	        console.log(data.content);
+	        var content=yield util.parseXMLAsync(data);//初步解析xml
+
+            var message=util.formatMessage(content.xml);
+	        console.log(message);
         }
     }
 }
