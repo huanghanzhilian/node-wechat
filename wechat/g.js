@@ -65,7 +65,7 @@ module.exports = function(opts) {
                     var now=new Date().getTime();//获取当前时间戳
                     that.status=200;//设置回复状态为200
                     that.type='application/xml';//设置类型xml格式
-                    //回复主体
+                    //回复主体 
                     var reply='<xml>'+
                      '<ToUserName><![CDATA['+message.FromUserName+']]></ToUserName>'+
                      '<FromUserName><![CDATA['+message.ToUserName+']]></FromUserName>'+
