@@ -2,7 +2,7 @@
 
 var Promise = require('bluebird');
 var request = Promise.promisify(require('request'))
-
+var util=require('./util');
 var prefix = 'https://api.weixin.qq.com/cgi-bin/'; //前缀
 var api = {
     accessToken: prefix + 'token?grant_type=client_credential'
@@ -70,6 +70,19 @@ Wechat.prototype.updateAccessToken = function() {
             resolve(data)
         })
     })
+}
+
+Wechat.prototype.reply = function() {
+    var content=this.body;
+    var massage=this.weixin;
+    /*console.log(content)
+    console.log(1111)*/
+    //console.log(massage)
+    var xml=util.tpl(content,massage);
+
+    this.status=200;//设置回复状态为200
+    this.type='application/xml';//设置类型xml格式
+    this.body=xml;
 }
 
 module.exports=Wechat;

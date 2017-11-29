@@ -6,8 +6,8 @@ var getRawBody=require('raw-body');
 var util = require('./util');
 
 //暴露出去的函数
-module.exports = function(opts) {
-    //var wechat = new Wechat(opts.wechat);
+module.exports = function(opts,handler) {
+    var wechat = new Wechat(opts.wechat);
     return function*(next) {
         var that = this;
         var token = opts.wechat.token; //拿到token
@@ -42,26 +42,18 @@ module.exports = function(opts) {
 	        var content=yield util.parseXMLAsync(data);//初步解析xml
 
             var message=util.formatMessage(content.xml);
-	        console.log(message);
-            if(message.MsgType==='event'){//push过来是一个事件
-                if(message.Event==='subscribe'){//关注事件
-                    var now=new Date().getTime();//获取当前时间戳
-                    that.status=200;//设置回复状态为200
-                    that.type='application/xml';//设置类型xml格式
-                    //回复主体
-                    var reply='<xml>'+
-                     '<ToUserName><![CDATA['+message.FromUserName+']]></ToUserName>'+
-                     '<FromUserName><![CDATA['+message.ToUserName+']]></FromUserName>'+
-                     '<CreateTime>'+now+'</CreateTime>'+
-                     '<MsgType><![CDATA[text]]></MsgType>'+
-                     '<Content><![CDATA[hello 欢迎你的到来]]></Content>'+
-                     '</xml>';
-                     console.log(reply)
-                     that.body=reply;
-                     return;
-                }
-            }
-            if(message.MsgType==='text'){//push过来是一个事件
+	        
+            this.weixin=message;
+            //console.log(this.weixin)
+
+            yield handler.call(this,next)
+
+            wechat.reply.call(this)
+
+
+
+
+            /*if(message.MsgType==='text'){//push过来是一个事件
                     var now=new Date().getTime();//获取当前时间戳
                     that.status=200;//设置回复状态为200
                     that.type='application/xml';//设置类型xml格式
@@ -76,7 +68,7 @@ module.exports = function(opts) {
                      console.log(reply)
                      that.body=reply;
                      return;
-            }
+            }*/
         }
     }
 }
