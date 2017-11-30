@@ -1,8 +1,17 @@
 'use strict'
 
-var config=require('./config');
-var Wechat=require('./wechat/wechat');
-var wechatApi=new Wechat(config.wechat);
+var config = require('./config');
+var Wechat = require('./wechat/wechat');
+var kk=require('./menu');
+var wechatApi = new Wechat(config.wechat);
+
+
+//删除菜单
+wechatApi.deleteMenu().then(function(){
+    wechatApi.createMenu(kk)
+    console.log('删除成功')
+})
+
 
 exports.reply = function*(next) {
     var message = this.weixin;
@@ -12,7 +21,8 @@ exports.reply = function*(next) {
             if (message.EventKey) {
                 console.log('扫码进来' + message.EventKey)
             }
-            this.body = '哈哈，你订阅了我的公众号'
+            var data = yield wechatApi.getUserInfo(message.FromUserName);
+            this.body = '您好'+data.nickname+'欢迎来到我的公众号';
         }
         //取消关注
         else if (message.Event === 'unsubscribe') {
@@ -62,34 +72,103 @@ exports.reply = function*(next) {
                 url: 'https://github.com/huanghanzhilian'
             }];
         } else if (content == '5') {
-        	var data =yield wechatApi.uploadMaterial('image',__dirname +'/2.jpg');
-        	//console.log(data)
+            var data = yield wechatApi.uploadMaterial('image', __dirname + '/2.jpg');
+            //console.log(data)
             reply = {
-            	type:'image',
-            	mediaId:data.media_id
+                type: 'image',
+                mediaId: data.media_id
             };
         }
         //视频上传
         else if (content == '6') {
-        	var data =yield wechatApi.uploadMaterial('video',__dirname +'/6.mp4');
-        	//console.log(data)
+            var data = yield wechatApi.uploadMaterial('video', __dirname + '/6.mp4');
+            //console.log(data)
             reply = {
-            	type:'video',
-            	title:'回复视频',
-            	description: '描述',
-            	mediaId:data.media_id
+                type: 'video',
+                title: '回复视频',
+                description: '描述',
+                mediaId: data.media_id
             };
         }
         //音乐
         else if (content == '7') {
-        	var data =yield wechatApi.uploadMaterial('image',__dirname +'/2.jpg');
+            var data = yield wechatApi.uploadMaterial('image', __dirname + '/2.jpg');
             reply = {
-            	type:'music',
-            	title:'回复音乐内容',
-            	description: '放松一下',
-            	musicUrl:'http://96.f.1ting.com/5a1f988c/b755645dd872c6db0559cf9be27fe94d/zzzzzmp3/2017kNov/29X/29f_TizzyT/01.mp3',
-            	thumbMediaId:data.media_id
+                type: 'music',
+                title: '回复音乐内容',
+                description: '放松一下',
+                musicUrl: 'http://96.f.1ting.com/5a1f988c/b755645dd872c6db0559cf9be27fe94d/zzzzzmp3/2017kNov/29X/29f_TizzyT/01.mp3',
+                thumbMediaId: data.media_id
             };
+        }
+        //上传永久素材
+        else if (content == '8') {
+            var data = yield wechatApi.uploadMaterial('image', __dirname + '/2.jpg', { type: 'image' });
+            reply = {
+                type: 'image',
+                mediaId: data.media_id
+            };
+        }
+        //上传永久素材 视频
+        else if (content == '9') {
+            var data = yield wechatApi.uploadMaterial('video', __dirname + '/6.mp4', { type: 'video', description: '{"title":"我的永久视频", "introduction":"我的永久视频"}' });
+            reply = {
+                type: 'video',
+                title: '回复视频',
+                description: '永久上传视频',
+                mediaId: data.media_id
+            };
+        }
+        //获取图片对象
+        else if (content == '10') {
+            var picData = yield wechatApi.uploadMaterial('image', __dirname + '/2.jpg', {});
+            var meida={
+                articlse:[{
+                    title:'tututut',
+                    thumbMediaId:picData.media_id,
+                    author:'Scott',
+                    digest:'没有摘要',
+                    show_cover_pic:1,
+                    content:'没有内容',
+                    content_source_url:'https://github.com/huanghanzhilian'
+
+                }]
+            }
+            var data = yield wechatApi.uploadMaterial('video',meida,{});
+            data = yield wechatApi.fetchMaterial(data.media_id);
+            console.log(data)
+            var item = data.news.item;
+            var news=[];
+            item.forEach(function(item){
+                news.push({
+                    title:item.title,
+                    description:item.description,
+                    picUrl: picData.url,
+                    url: item.url
+                })
+            })
+            reply = {
+                type: 'video',
+                title: '回复视频',
+                description: '永久上传视频',
+                mediaId: data.media_id
+            };
+        }
+        //新建分组
+        else if (content == '12') {
+            var group = yield wechatApi.createGroup('aawechat1');
+            console.log('新分组 wechat1')
+            console.log(group)
+            /*reply = {
+                type: 'image',
+                mediaId: data.media_id
+            };*/
+        }
+        //获取用户信息
+        else if (content == '13') {
+            var data = yield wechatApi.getUserInfo(message.FromUserName);
+            console.log(data)
+            reply = '您好'+data.nickname+'欢迎来到我的公众号'
         }
         this.body = reply;
     }
