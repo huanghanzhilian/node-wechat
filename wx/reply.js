@@ -73,7 +73,7 @@ exports.reply = function*(next) {
                 url: 'https://github.com/huanghanzhilian'
             }];
         } else if (content == '5') {
-            var data = yield wechatApi.uploadMaterial('image', path.join(__dirname ,'/2.jpg'));
+            var data = yield wechatApi.uploadMaterial('image', path.join(__dirname ,'../2.jpg'));
             //console.log(data)
             reply = {
                 type: 'image',
@@ -82,7 +82,7 @@ exports.reply = function*(next) {
         }
         //视频上传
         else if (content == '6') {
-            var data = yield wechatApi.uploadMaterial('video', path.join(__dirname,'/6.mp4'));
+            var data = yield wechatApi.uploadMaterial('video', path.join(__dirname,'../6.mp4'));
             //console.log(data)
             reply = {
                 type: 'video',
@@ -93,7 +93,7 @@ exports.reply = function*(next) {
         }
         //音乐
         else if (content == '7') {
-            var data = yield wechatApi.uploadMaterial('image', path.join(__dirname,'/2.jpg'));
+            var data = yield wechatApi.uploadMaterial('image', path.join(__dirname,'../2.jpg'));
             reply = {
                 type: 'music',
                 title: '回复音乐内容',
@@ -104,7 +104,7 @@ exports.reply = function*(next) {
         }
         //上传永久素材
         else if (content == '8') {
-            var data = yield wechatApi.uploadMaterial('image', path.join(__dirname,'/2.jpg'), { type: 'image' });
+            var data = yield wechatApi.uploadMaterial('image', path.join(__dirname,'../2.jpg'), { type: 'image' });
             reply = {
                 type: 'image',
                 mediaId: data.media_id
@@ -112,7 +112,7 @@ exports.reply = function*(next) {
         }
         //上传永久素材 视频
         else if (content == '9') {
-            var data = yield wechatApi.uploadMaterial('video', path.join(__dirname,'/6.mp4'), { type: 'video', description: '{"title":"我的永久视频", "introduction":"我的永久视频"}' });
+            var data = yield wechatApi.uploadMaterial('video', path.join(__dirname,'../6.mp4'), { type: 'video', description: '{"title":"我的永久视频", "introduction":"我的永久视频"}' });
             reply = {
                 type: 'video',
                 title: '回复视频',
@@ -122,7 +122,7 @@ exports.reply = function*(next) {
         }
         //获取图片对象
         else if (content == '10') {
-            var picData = yield wechatApi.uploadMaterial('image', path.join(__dirname,'/2.jpg'), {});
+            var picData = yield wechatApi.uploadMaterial('image', path.join(__dirname,'../2.jpg'), {});
             var meida={
                 articlse:[{
                     title:'tututut',
