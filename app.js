@@ -4,14 +4,14 @@ var Koa = require('koa');
 //var koaStatic = require('koa-static');
 var path = require('path');
 var fs = require('fs');
-var crypto=require('crypto');
-var util = require('./libs/util');
+var crypto=require('crypto');//sha1排序算法
+var util = require('./libs/util');//读写token扩展
 var wechat = require('./wechat/g'); //引入自定义中间件
-var config = require('./config');
-var reply = require('./wx/reply');
+var config = require('./config');//引入微信配置文件 读写方法
+var reply = require('./wx/reply');//微信公众号智能呢个提示
 var ejs = require('ejs');
 var heredoc = require('heredoc');
-var Wechat = require('./wechat/wechat');
+var Wechat = require('./wechat/wechat');//微信方法
 
 var tpl = heredoc(function() {
     /*
@@ -223,10 +223,8 @@ function sign(ticket,url){
 
 
 var app = new Koa(); //实例化koa web服务器
-//app.use(koaStatic(path.join(__dirname,'./dist'))); // 将 webpack 打包好的项目目录作为 Koa 静态文件服务的目录
-//console.log(config)
-app.use(function* (next) {
-    //this.body=fs.readFileSync(path.resolve(__dirname, './dist/index.html'), 'utf-8')
+
+/*app.use(function* (next) {
     if (this.url.indexOf('/movie') > -1) {
         var wechatApi = new Wechat(config.wechat);
         var data=yield wechatApi.fetchAccessToken();
@@ -238,17 +236,12 @@ app.use(function* (next) {
         this.body = ejs.render(tpl,params);
     }
     return next;
-})
+})*/
 
 
 app.use(wechat(config, reply.reply)) //服务器实例去use 使用中间件
 
 
-/*app.get('/test', function(req, res) {
-    console.log(req)
-    const html = fs.readFileSync(path.resolve(__dirname, './dist/index.html'), 'utf-8')
-    res.send(html)
-})*/
 
 
 app.listen(1234)

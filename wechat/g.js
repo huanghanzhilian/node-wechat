@@ -8,6 +8,7 @@ var util = require('./util');
 //暴露出去的函数
 module.exports = function(opts,handler) {
     var wechat = new Wechat(opts.wechat);
+    console.log(1)
     return function*(next) {
         var that = this;
         var token = opts.wechat.token; //拿到token

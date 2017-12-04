@@ -45,6 +45,7 @@ var api = {
 
 
 function Wechat(opts) {
+
     var that = this;
     this.appID = opts.appID;
     this.appSecret = opts.appSecret;
@@ -80,6 +81,7 @@ function Wechat(opts) {
 }
 
 Wechat.prototype.fetchAccessToken = function(data) {
+
     var that = this;
     if (this.access_token && this.expires_in) {
         if (this.isValidAccessToken(this)) {
@@ -427,7 +429,7 @@ Wechat.prototype.getMenu = function(menu) {
 
 //删除菜单
 Wechat.prototype.deleteMenu = function() {
-    console.log(1)
+    console.log('删除菜单方法')
     var that = this;
     return new Promise(function(resolve, reject) {
         that
