@@ -6,7 +6,7 @@ var util = require('./libs/util');
 var wechat_file = path.join(__dirname, './config/wechat.txt') //文本文件
 var wechat_ticket_file=path.join(__dirname, './config/wechat_ticket.txt') //文本文件
 
-//存储一些配置信息 
+//存储一些配置信息
 var config = {
     wechat: {
         appID: 'wx1a2b42155c618d7a',
