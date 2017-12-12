@@ -1,8 +1,8 @@
 'use strict'
 
-var Koa = require('koa');
+var Koa = require('koa'); 
 //var koaStatic = require('koa-static');
-var path = require('path');
+var path = require('path'); 
 var fs = require('fs');
 var crypto=require('crypto');//sha1排序算法
 var util = require('./libs/util');//读写token扩展
