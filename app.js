@@ -1,6 +1,6 @@
 'use strict'
 
-var Koa = require('koa'); 
+var Koa = require('koa');
 //var koaStatic = require('koa-static');
 var path = require('path'); 
 var fs = require('fs');
