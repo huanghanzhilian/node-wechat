@@ -37,6 +37,9 @@ exports.reply = function*(next) {
         //点击了菜单
         else if (message.Event === 'CLICK') {
             this.body = '您点击了菜单:' + message.EventKey
+            if(message.EventKey==='V1001_GOOD'){
+                this.body = '谢谢您的点赞'
+            }
         }
         //扫描
         else if (message.Event === 'SCAN') {

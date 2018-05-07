@@ -2,15 +2,15 @@
 
 module.exports = {
     "button": [{
-            "type": "click",
-            "name": "点击事件",
-            "key": "menu_click"
+            "type": "view",
+            "name": "博客首页",
+            "url": "http://www.huanghanlian.com/"
         },
         {
-            "name": "点出菜单",
+            "name": "菜单",
             "sub_button": [{
                     "type": "view",
-                    "name": "跳转",
+                    "name": "博客首页",
                     "url": "http://www.huanghanlian.com/"
                 },
                 {
@@ -25,10 +25,11 @@ module.exports = {
                     "key": "V1001_GOOD"
                 }
             ]
-        },{
-            "type": "click",
-            "name": "点击事件2",
-            "key": "menu_click2"
         }
+        // ,{
+        //     "type": "click",
+        //     "name": "点击事件2",
+        //     "key": "menu_click2"
+        // }
     ]
 };
