@@ -224,7 +224,9 @@ function sign(ticket,url){
 
 var app = new Koa(); //实例化koa web服务器
 
-/*app.use(function* (next) {
+
+
+app.use(function* (next) {
     if (this.url.indexOf('/movie') > -1) {
         var wechatApi = new Wechat(config.wechat);
         var data=yield wechatApi.fetchAccessToken();
@@ -236,9 +238,7 @@ var app = new Koa(); //实例化koa web服务器
         this.body = ejs.render(tpl,params);
     }
     return next;
-})*/
-
-
+})
 app.use(wechat(config, reply.reply)) //服务器实例去use 使用中间件
 
 
