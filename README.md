@@ -22,3 +22,35 @@ g:/开发工具/ngrok国内版/ngrok国内版/windows_386/windows_386
 
 <img src="https://upload-images.jianshu.io/upload_images/3877962-84187ee34aa5008d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" width="250" height="250"/>
 
+
+cd /etc/nginx/conf.d
+sudo vi short-huanghanlian-com-1234.conf
+
+```
+upstream node_wechat {
+        server 127.0.0.1:1234;
+}
+
+
+
+server {
+        listen 80;
+        server_name wx.huangweixinccddee.cn;
+
+        location / {
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;
+                proxy_set_header Host $http_host;
+                proxy_set_header X-Nginx-Proxy true;
+
+                proxy_pass http://node_wechat;
+                proxy_redirect off;
+        }
+}
+```
+
+检测配置文件有没有错误
+sudo nginx -t
+
+nginx重启
+sudo nginx -s reload

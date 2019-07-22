@@ -7,8 +7,8 @@ var util = require('./util');
 
 //暴露出去的函数
 module.exports = function(opts,handler) {
+    //实例化
     var wechat = new Wechat(opts.wechat);
-    console.log(111111111)
     return function*(next) {
         console.log(112222222222)
         console.log(this.query)
@@ -48,10 +48,15 @@ module.exports = function(opts,handler) {
             var message=util.formatMessage(content.xml);
 	        
             this.weixin=message;
-            //console.log(this.weixin)
+            
+            console.log('>>>>>>>>>>>微信推送服务器数据s>>>>>>>>>>>>')
+            console.log(this.weixin)
+            console.log('>>>>>>>>>>>微信推送服务器数据e>>>>>>>>>>>>')
 
+            //执行回答
             yield handler.call(this,next)
 
+            //
             wechat.reply.call(this)
 
 
