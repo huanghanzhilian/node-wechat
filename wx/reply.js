@@ -23,7 +23,7 @@ exports.reply = function*(next) {
                 console.log('扫码进来' + message.EventKey)
             }
             var data = yield wechatApi.getUserInfo(message.FromUserName);
-            this.body = '您好'+data.nickname+'欢迎来到我的公众号';
+            this.body = '您好'+data.nickname+'欢迎来到黄继鹏的公众号';
         }
         //取消关注
         else if (message.Event === 'unsubscribe') {
@@ -172,7 +172,7 @@ exports.reply = function*(next) {
         else if (content == '13') {
             var data = yield wechatApi.getUserInfo(message.FromUserName);
             console.log(data)
-            reply = '您好'+data.nickname+'欢迎来到我的公众号'
+            reply = '您好'+data.nickname+'欢迎来到黄继鹏的公众号'
         }
         this.body = reply;
     }
