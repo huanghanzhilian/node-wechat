@@ -1,3 +1,13 @@
+# 项目功能
+
+1. 使用nodejs。开发微信公众号
+2. 通过接口配置公众号菜单栏
+3. 开发公众号输入关键字对话聊天功能
+4. 扫码事件等公众号API调用
+5. 贯通整个微信公众号ticket机制，为前端后期登录授权工作做好后端知识铺垫
+6. 使用node为前端微信分享，分享朋友圈调用api，做好api对接工作
+
+
 #### 运行
 
 node --harmony app
@@ -11,7 +21,7 @@ node --harmony app
 启动路径
 g:/开发工具/ngrok国内版/ngrok国内版/windows_386/windows_386
 
-线上地址：http://wechat.huanghanlian.com/wx/
+线上地址：http://wx.huangweixinccddee.cn/wx
 
 隧道代理测试地址： http://node-wechat.tunnel.qydev.com/wx/
 
@@ -20,7 +30,12 @@ g:/开发工具/ngrok国内版/ngrok国内版/windows_386/windows_386
 
 ### 微信扫描下方二维码进入公众号
 
-<img src="https://upload-images.jianshu.io/upload_images/3877962-84187ee34aa5008d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" width="250" height="250"/>
+<img src="http://blog.huanghanlian.com/uploads/article/82aa168b-9943-488d-8c2b-c462a8a577d9.png" width="250" height="250"/>
+
+
+
+
+# 项目部署
 
 
 cd /etc/nginx/conf.d

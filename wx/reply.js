@@ -67,12 +67,12 @@ exports.reply = function*(next) {
             reply = [{
                 title: '技术改变世界',
                 description: '只是个描述而已',
-                picUrl: 'http://static.samured.com/assets/images/video/cover/iQVBBrK_gEM.jpg',
-                url: 'http://www.huanghanlian.com/'
+                picUrl: 'http://blog.huanghanlian.com/uploads/article/3f4598b9-5df6-43e3-a5c1-8d9f2a10ea55.png',
+                url: 'http://www.huangweixinccddee.cn/'
             }, {
                 title: '游戏',
                 description: '好玩',
-                picUrl: 'http://static.samured.com/assets/images/video/cover/Dnnq9FDEubI.jpg',
+                picUrl: 'http://blog.huanghanlian.com/uploads/article/3f4598b9-5df6-43e3-a5c1-8d9f2a10ea55.png',
                 url: 'https://github.com/huanghanzhilian'
             }];
         } else if (content == '5') {

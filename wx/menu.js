@@ -4,14 +4,14 @@ module.exports = {
     "button": [{
             "type": "view",
             "name": "博客首页",
-            "url": "http://www.huanghanlian.com/"
+            "url": "http://www.huangweixinccddee.cn/"
         },
         {
             "name": "菜单",
             "sub_button": [{
                     "type": "view",
                     "name": "博客首页",
-                    "url": "http://www.huanghanlian.com/"
+                    "url": "http://www.huangweixinccddee.cn/"
                 },
                 {
                     "type": "scancode_push",
