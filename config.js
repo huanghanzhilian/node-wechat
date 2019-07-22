@@ -9,8 +9,8 @@ var wechat_ticket_file=path.join(__dirname, './config/wechat_ticket.txt') //文�
 //存储一些配置信息  
 var config = {
     wechat: {
-        appID: 'wxf8e5022a5a16b180',
-        appSecret: '0c37144fe0421f459941603370c77d25',
+        appID: 'wxad5ccef5463f8361',
+        appSecret: 'ce7021db17f3473b1df0f7a0ed969320',
         // appID: 'wx83c153a1e9477fe9',
         // appSecret: 'cac2526167107eb5129145141fc7e4c8',
         token: 'weixin',
