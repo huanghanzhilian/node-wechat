@@ -8,8 +8,10 @@ var util = require('./util');
 //暴露出去的函数
 module.exports = function(opts,handler) {
     var wechat = new Wechat(opts.wechat);
-    console.log(1)
+    console.log(111111111)
     return function*(next) {
+        console.log(112222222222)
+        console.log(this.query)
         var that = this;
         var token = opts.wechat.token; //拿到token
         var signature = this.query.signature; //拿到一个签名
@@ -20,6 +22,7 @@ module.exports = function(opts,handler) {
         var str = [token, timestamp, nonce].sort().join('');
         //进行加密
         var sha = sha1(str);
+
         //请求方法的判断
         if(this.method==='GET'){
         	//判断加密值是否等于签名值

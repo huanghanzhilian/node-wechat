@@ -226,19 +226,19 @@ var app = new Koa(); //实例化koa web服务器
 
 
 
-app.use(function* (next) {
-    if (this.url.indexOf('/movie') > -1) {
-        var wechatApi = new Wechat(config.wechat);
-        var data=yield wechatApi.fetchAccessToken();
-        var access_token=data.access_token;
-        var ticketData=yield wechatApi.fetchTicket(access_token);
-        var ticket=ticketData.ticket;
-        var url=this.href;
-        var params=sign(ticket,url)
-        this.body = ejs.render(tpl,params);
-    }
-    return next;
-})
+// app.use(function* (next) {
+//     if (this.url.indexOf('/movie') > -1) {
+//         var wechatApi = new Wechat(config.wechat);
+//         var data=yield wechatApi.fetchAccessToken();
+//         var access_token=data.access_token;
+//         var ticketData=yield wechatApi.fetchTicket(access_token);
+//         var ticket=ticketData.ticket;
+//         var url=this.href;
+//         var params=sign(ticket,url)
+//         this.body = ejs.render(tpl,params);
+//     }
+//     return next;
+// })
 app.use(wechat(config, reply.reply)) //服务器实例去use 使用中间件
 
 
